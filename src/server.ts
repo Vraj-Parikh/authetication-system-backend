@@ -10,6 +10,7 @@ const server = app.listen(envParsed.PORT, '', (error) => {
 })
 try {
     // DB Connect
+    logger.info(`Server running on PORT:${envParsed.PORT}`, { meta: envParsed })
 } catch (error) {
     logger.error('Error', error)
     server.close(() => {
