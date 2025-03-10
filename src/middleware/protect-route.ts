@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express'
-import { sendApiErrorResponse } from '../utils/api-error-response.js'
-import { getResponseMetaData } from '../utils/get-response-meta-data.js'
-import { TApiResponseError } from '../types/api-response.js'
-import { errorMessage } from '../constants/error-message.js'
+import { sendApiErrorResponse } from '../utils/api-error-response'
+import { getResponseMetaData } from '../utils/get-response-meta-data'
+import { TApiResponseError } from '../types/api-response'
+import { errorMessage } from '../constants/error-message'
 
 export default function protectRoute(
     req: Request,

@@ -2,13 +2,13 @@ import { createLogger, format, transports } from 'winston'
 import {
     ConsoleTransportInstance,
     FileTransportInstance
-} from 'winston/lib/winston/transports/index.js'
-import parsedEnv from '../constants/env-parsed.js'
-import { EApplicationEnvironment } from '../constants/application.js'
+} from 'winston/lib/winston/transports/index'
+import parsedEnv from '../constants/env-parsed'
+import { EApplicationEnvironment } from '../constants/application'
 import path from 'path'
 import util from 'util'
 import * as sourceMapSupport from 'source-map-support'
-import ApiErrorResponse from './api-error-response.js'
+import ApiErrorResponse from './api-error-response'
 
 //Linking Trace Support
 sourceMapSupport.install()
@@ -79,12 +79,7 @@ const fileTransport = (): Array<FileTransportInstance> => {
         new transports.File({
             level: 'info',
             format: format.combine(format.timestamp(), fileLogFormat),
-            filename: path.join(
-                import.meta.dirname,
-                '../../',
-                'logs',
-                logFileName
-            )
+            filename: path.join(__dirname, '../../', 'logs', logFileName)
         })
     ]
 }

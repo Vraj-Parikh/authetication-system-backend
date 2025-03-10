@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
-import { sendApiDataResponse } from '../../../utils/api-data-response.js'
-import { successMessage } from '../../../constants/success-message.js'
-import { getResponseMetaData } from '../../../utils/get-response-meta-data.js'
+import { sendApiDataResponse } from '../../../utils/api-data-response'
+import { successMessage } from '../../../constants/success-message'
+import { getResponseMetaData } from '../../../utils/get-response-meta-data'
 
 export default function selfIdentifyHandler(req: Request, res: Response) {
     const data = {}

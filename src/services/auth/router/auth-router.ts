@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import { validator } from '../../../validations/validator.js'
-import { loginSchema } from '../validations/login.js'
-import { loginHandler } from '../controller/login.js'
+import { validator } from '../../../validations/validator'
+import { loginSchema } from '../validations/login'
+import { loginHandler } from '../controller/login'
 import asyncHandler from 'express-async-handler'
-import selfIdentifyHandler from '../controller/self-identify.js'
-import protectRoute from '../../../middleware/protect-route.js'
+import selfIdentifyHandler from '../controller/self-identify'
+import protectRoute from '../../../middleware/protect-route'
 
 const authRouter = Router()
 

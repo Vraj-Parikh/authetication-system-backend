@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
-import { getApplicationHealth, getSystemHealth } from '../../../utils/health.js'
-import { getResponseMetaData } from '../../../utils/get-response-meta-data.js'
-import { sendApiDataResponse } from '../../../utils/api-data-response.js'
-import { successMessage } from '../../../constants/success-message.js'
+import { getApplicationHealth, getSystemHealth } from '../../../utils/health'
+import { getResponseMetaData } from '../../../utils/get-response-meta-data'
+import { sendApiDataResponse } from '../../../utils/api-data-response'
+import { successMessage } from '../../../constants/success-message'
 
 export default function healthHandler(req: Request, res: Response) {
     const applicationHealth = getApplicationHealth()
