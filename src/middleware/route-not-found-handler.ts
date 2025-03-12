@@ -10,14 +10,14 @@ export default function routeNotFoundHandler(
 ) {
     const notFoundErrorResponse = new ApiErrorResponse(
         errorMessage.NOT_FOUND.code,
-        errorMessage.NOT_FOUND.title
+        errorMessage.NOT_FOUND.detail(`${req.originalUrl} route`)
     )
     notFoundErrorResponse.setMeta(getResponseMetaData(req))
     notFoundErrorResponse.setError([
         {
             code: errorMessage.NOT_FOUND.code + '',
-            title: errorMessage.NOT_FOUND.title,
-            detail: errorMessage.NOT_FOUND.detail('Route')
+            title: errorMessage.NOT_FOUND.detail('Route'),
+            detail: errorMessage.NOT_FOUND.detail(`${req.originalUrl} route`)
         }
     ])
     next(notFoundErrorResponse)

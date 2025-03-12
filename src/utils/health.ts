@@ -2,7 +2,7 @@ import os from 'os'
 import envParsed from '../constants/env-parsed'
 
 function bytesToMB(val: number) {
-    return (val / 1024 / 1024).toFixed(2)
+    return (val / 1024 / 1024 / 1024).toFixed(2)
 }
 
 export function getSystemHealth() {

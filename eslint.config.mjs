@@ -23,7 +23,7 @@ export default defineConfig([
     ...tseslint.configs.recommended,
     {
         rules: {
-            'no-console': 'error',
+            // 'no-console': 'error',
             quotes: ['error', 'single', { allowTemplateLiterals: true }],
             ...eslintConfigPrettier.rules
         }

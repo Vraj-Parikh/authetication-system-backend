@@ -2,7 +2,7 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import apiRoutes from './routes/api-routes'
 import helmet from 'helmet'
-import generateRequestId from './middleware/generate-request-id'
+import assignRequestId from './middleware/assign-request-id'
 import cors from 'cors'
 import corsConfig from './config/cors'
 import globalErrorHandler from './middleware/global-error-handler'
@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, '../', 'public')))
 app.use(cookieParser())
 app.use(cors(corsConfig))
 app.use(helmet())
-app.use(generateRequestId)
+app.use(assignRequestId)
 
 // all api routes
 app.use('/api/v1', apiRoutes)

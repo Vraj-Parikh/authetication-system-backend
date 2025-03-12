@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import authRouter from '../services/auth/router/auth-router'
 import healthRouter from '../services/health/router/health-router'
+import authRouter from '../services/auth/router/auth-router'
 
 const apiRoutes = Router()
 

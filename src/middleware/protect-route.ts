@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
 import { sendApiErrorResponse } from '../utils/api-error-response'
-import { getResponseMetaData } from '../utils/get-response-meta-data'
 import { TApiResponseError } from '../types/api-response'
 import { errorMessage } from '../constants/error-message'
 
@@ -15,7 +14,6 @@ export default function protectRoute(
         return
     }
     const { code, detail, title } = errorMessage.UNAUTHORIZED
-    const meta = getResponseMetaData(req)
     const errors: TApiResponseError[] = [
         {
             code: code + '',
@@ -23,5 +21,5 @@ export default function protectRoute(
             title
         }
     ]
-    sendApiErrorResponse(title, code, errors, meta)
+    sendApiErrorResponse(req, title, code, errors)
 }

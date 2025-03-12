@@ -1,28 +1,23 @@
+import { Request } from 'express'
 import {
     TApiResponse,
     TApiResponseError,
     TApiResponseMeta
 } from '../types/api-response'
+import { getResponseMetaData } from './get-response-meta-data'
 
 export function sendApiErrorResponse(
+    req: Request,
     errorType: string,
     statusCode: number,
     errors: TApiResponseError[],
-    meta?: TApiResponseMeta
+    additionalMeta?: unknown
 ) {
-    const response: TApiResponse = {
-        meta: null,
-        errors: null,
-        data: null
-    }
-    response.errors = errors
-    if (meta) {
-        response.meta = meta
-    }
     const errorInstance = new ApiErrorResponse(statusCode, errorType)
     errorInstance.setError(errors)
-    if (meta) {
-        errorInstance.setMeta(meta)
+    errorInstance.setMeta(getResponseMetaData(req))
+    if (additionalMeta) {
+        errorInstance.setAdditionalMeta(additionalMeta)
     }
     throw errorInstance
 }
@@ -47,6 +42,14 @@ class ApiErrorResponse extends Error {
     }
     setMeta(meta: TApiResponseMeta) {
         this.response.meta = meta
+    }
+    setAdditionalMeta(additionalMeta: unknown) {
+        if (this.response.meta) {
+            this.response.meta = {
+                ...this.response.meta,
+                additional: additionalMeta
+            }
+        }
     }
 }
 

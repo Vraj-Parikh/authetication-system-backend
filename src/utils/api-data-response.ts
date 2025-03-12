@@ -1,11 +1,13 @@
-import { Response } from 'express'
-import { TApiResponse, TApiResponseMeta } from '../types/api-response'
+import { Request, Response } from 'express'
+import { TApiResponse } from '../types/api-response'
+import { getResponseMetaData } from './get-response-meta-data'
 
 export function sendApiDataResponse(
+    req: Request,
     res: Response,
     statusCode: number,
     data: unknown,
-    meta?: TApiResponseMeta
+    additionalMeta?: unknown
 ) {
     const response: TApiResponse = {
         meta: null,
@@ -13,8 +15,12 @@ export function sendApiDataResponse(
         data: null
     }
     response.data = data
-    if (meta) {
-        response.meta = meta
+    response.meta = getResponseMetaData(req)
+    if (additionalMeta) {
+        response.meta = {
+            ...response.meta,
+            additional: additionalMeta
+        }
     }
     res.status(statusCode).json(response)
 }
